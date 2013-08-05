@@ -15,6 +15,8 @@
 
         buttons : '@namespace-buttons',
         append : 'a@namespace-append',
+
+        id : 'infut-',
         
         maximum : null,
         minimum : null
@@ -72,6 +74,7 @@
 
             // Generate settings.
             var settings = $.infut.helpers.getSettings(runtime);
+            settings.id = $infut.data('id') || settings.id;
 
             // Get container
             var container = $( settings.container, $infut );
@@ -153,7 +156,13 @@
                     {
                         var appendable = dummy.clone().show();
 
+                        var id = (settings.id || appendable.data('id')).toString();
+
                         count++;
+
+                        // Alter labels and input ids.
+                        $('[for="' + id + '0"]', appendable).attr('for', id + count.toString());
+                        $('#' + id + '0', appendable).attr('id', id + count.toString());
 
                         $( settings.counter, appendable).text( count );
 

@@ -15,7 +15,6 @@
 
         buttons : '@namespace-buttons',
         append : 'a@namespace-append',
-
         
         maximum : null,
         minimum : null
@@ -80,8 +79,6 @@
             // Get elements and their count
             var elements = $( settings.elements, container ).not( settings.dummy );
             var count = elements.length;
-
-            console.log( elements, count );
 
             // Prepare dummy element.
             var dummy = $( settings.dummy, container );
@@ -160,7 +157,7 @@
 
                         $( settings.counter, appendable).text( count );
 
-                        appendable.appendTo(container);
+                        appendable.appendTo(container).removeClass(settings.dummy.replace(/^\.+/, ''));
 
                         if (count === settings.maximum)
                         {
